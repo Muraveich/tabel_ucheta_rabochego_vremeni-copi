@@ -1,0 +1,39 @@
+{
+  "results" : [{
+    "id": 1,
+    "name": "Андрюшко А.В.",
+    "post": "Руководитель",
+    "pasword": "12345",
+    "date": null,
+    "status": null,
+    "smena": null
+  },
+  {
+    "id": 2,
+    "name": "Кесарев А.В.",
+    "post": "Мастер",
+    "pasword": "12345",
+    "smena": 2,
+    "date": null,
+    "status": null    
+  },
+  
+  {
+    "id": 3,
+    "name": "Журба В.В.",
+    "post": "Мастер",
+    "pasword": "12345",
+    "smena": 2,
+    "date": null,
+    "status": null
+  },
+  {
+    "id": 1,
+    "name": "Коршунов С.А.",
+    "post": "Рабочий",
+    "pasword": "12345",
+    "smena": null,
+    "date": null,
+    "status": null
+  }]
+}
