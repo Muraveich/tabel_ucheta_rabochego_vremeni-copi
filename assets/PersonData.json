@@ -1,19 +1,23 @@
 {
+  "now_shift": {
+    "now_shift": 2
+  },
+
   "results" : [{
     "id": 1,
     "name": "Андрюшко А.В.",
     "post": "Руководитель",
-    "pasword": "12345",
+    "password": "12345",
     "date": null,
     "status": null,
-    "smena": null
+    "shift": null
   },
   {
     "id": 2,
     "name": "Кесарев А.В.",
     "post": "Мастер",
-    "pasword": "12345",
-    "smena": 2,
+    "password": "12345",
+    "shift": 2,
     "date": null,
     "status": null    
   },
@@ -22,17 +26,17 @@
     "id": 3,
     "name": "Журба В.В.",
     "post": "Мастер",
-    "pasword": "12345",
-    "smena": 2,
+    "password": "12345",
+    "shift": 2,
     "date": null,
     "status": null
   },
   {
-    "id": 1,
+    "id": 4,
     "name": "Коршунов С.А.",
     "post": "Рабочий",
-    "pasword": "12345",
-    "smena": null,
+    "password": "12345",
+    "shift": 2,
     "date": null,
     "status": null
   }]
