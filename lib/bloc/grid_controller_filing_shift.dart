@@ -31,16 +31,25 @@ class GridControllerFilingShift {
         frozen: PlutoColumnFrozen.start,
         enableColumnDrag: false,
         enableContextMenu: false,
-        enableDropToResize: false),
+        enableDropToResize: false,
+        hide: true),
     PlutoColumn(
         backgroundColor: Colors.orange[300],
         title: 'Место работы',
         field: 'workplace',
-        type: PlutoColumnType.select(<String>[
-          'Стела',
-          'Черноморка',
-          'АС№3',
-        ]),
+        type: PlutoColumnType.select(
+          <String>[
+            '',
+            'Автостоянки',
+            'Стела',
+            'Черноморка',
+            'АС№3',
+            'Черноморка (въезд)',
+            'Черноморка (выезд)',
+            'Стела (въезд)',
+            'Стела (выезд)',
+          ],
+        ),
         enableColumnDrag: false,
         enableContextMenu: false,
         enableDropToResize: false),
@@ -48,19 +57,7 @@ class GridControllerFilingShift {
         backgroundColor: Colors.orange[300],
         title: 'Вид активности',
         field: 'status',
-        type: PlutoColumnType.select(<String>[
-          'Больничный',
-          'Выходной',
-          'ДО',
-          'Оплачиваемый Выходной',
-          'ОЖ',
-          'ОВ',
-          'Отпуск',
-          'Отгул',
-          'РВ',
-          'Учебный ОТ',
-          'Явка',
-        ]),
+        type: PlutoColumnType.text(),
         enableColumnDrag: false,
         enableContextMenu: false,
         enableDropToResize: false),
@@ -101,28 +98,30 @@ class GridControllerFilingShift {
         enableDropToResize: false),
   ];
 
-  PlutoRow _createRow(Results person) {
-    Color color;
-    switch (person.post) {
-      case 'Мастер':
-        color = Colors.black38;
-      case 'Регистратор':
-        color = const Color.fromARGB(255, 255, 213, 227);
-      case 'Диспетчер а/т':
-        color = Colors.white;
-        break;
-      default:
-        color = Colors.white;
-    }
+  PlutoRow createRow(Results person) {
+    // Color color;
+    // switch (person.post) {
+    //   case 'Мастер':
+    //     color = Colors.black38;
+    //   case 'Регистратор':
+    //     color = const Color.fromARGB(255, 255, 213, 227);
+    //   case 'Диспетчер а/т':
+    //     color = Colors.white;
+    //     break;
+    //   default:
+    //     color = Colors.white;
+    // }
     Map<String, PlutoCell> cells = {
       'id': PlutoCell(value: person.id),
-      'name': PlutoCell(value: person.name),
+      'name': PlutoCell(value: '${person.name}\n${person.post}'),
       'post': PlutoCell(value: person.post),
-      'workplace': PlutoCell(value: null),
+      'workplace': PlutoCell(value: ''),
       'status': PlutoCell(value: person.status ?? 'Явка'),
       'hoursDay': PlutoCell(value: 11),
       'hoursNight': PlutoCell(value: 0),
-      'replacement': PlutoCell(value: null),
+      'replacement': PlutoCell(
+        value: '',
+      ),
       'comment': PlutoCell(value: ''),
     };
     return PlutoRow(cells: cells);
@@ -133,10 +132,22 @@ class GridControllerFilingShift {
     List<PlutoRow> rows = [];
     for (var element
         in persons!.where((element) => element.shift == nowShiftIndex)) {
-      PlutoRow row = _createRow(element);
+      PlutoRow row = createRow(element);
 
       rows.add(row);
     }
+
+    if (rows.length > 1) {
+      rows.sort((a, b) => getSortWeight(a.cells.entries
+              .firstWhere((element) => element.key == 'post')
+              .value
+              .value)
+          .compareTo(getSortWeight(b.cells.entries
+              .firstWhere((element) => element.key == 'post')
+              .value
+              .value)));
+    }
+
     return rows;
   }
 
@@ -161,5 +172,23 @@ class GridControllerFilingShift {
       }
     }
     PersonRepository().setPersonEntiti(newPersons);
+  }
+
+  int getSortWeight(String post) {
+    int weight = 0;
+    switch (post) {
+      case 'Мастер':
+        weight = -1;
+      case 'Регистратор':
+        weight = 2;
+      case 'Диспетчер а/т':
+        weight = 8;
+      case 'Диспетчер':
+        weight = 5;
+        break;
+      default:
+        weight = 4;
+    }
+    return weight;
   }
 }

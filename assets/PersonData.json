@@ -34,7 +34,34 @@
   {
     "id": 4,
     "name": "Коршунов С.А.",
-    "post": "Рабочий",
+    "post": "Диспетчер а/т",
+    "password": "12345",
+    "shift": 2,
+    "date": null,
+    "status": null
+  },
+  {
+    "id": 5,
+    "name": "Чех О.Е.",
+    "post": "Регистратор",
+    "password": "12345",
+    "shift": 2,
+    "date": null,
+    "status": null
+  },
+  {
+    "id": 6,
+    "name": "Беженцева А.В.",
+    "post": "Диспетчер",
+    "password": "12345",
+    "shift": 2,
+    "date": null,
+    "status": null
+  },
+  {
+    "id": 7,
+    "name": "Манин И.В.",
+    "post": "Диспетчер а/т",
     "password": "12345",
     "shift": 2,
     "date": null,

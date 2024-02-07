@@ -103,7 +103,7 @@ class _PageLoginState extends State<PageLogin> {
                               builder: (context) => HomeMaster(
                                     name: person.name,
                                   )));
-                    } else if (person.post == "Рабочий") {
+                    } else {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
