@@ -9,21 +9,26 @@ class ListController {
         builder: (BuildContext ctx) {
           final textController = TextEditingController();
           return Dialog(
+            alignment: Alignment.topCenter,
             child: LayoutBuilder(
               builder: (ctx, size) {
                 return Container(
                   padding: const EdgeInsets.all(15),
                   width: 400,
-                  height: 500,
+                  height: 300,
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Введитн текст коментария'),
-                        TextField(
-                          controller: textController,
-                          autofocus: true,
+                        const Text('Введите текст коментария'),
+                        SizedBox(
+                          height: 190,
+                          child: TextField(
+                            maxLines: null,
+                            controller: textController,
+                            autofocus: true,
+                          ),
                         ),
                         const SizedBox(height: 20),
                         Center(

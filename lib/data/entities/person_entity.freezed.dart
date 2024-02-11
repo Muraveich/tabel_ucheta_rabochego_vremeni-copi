@@ -218,6 +218,7 @@ mixin _$Results {
   String? get status => throw _privateConstructorUsedError;
   String? get workplace => throw _privateConstructorUsedError;
   String? get forWhom => throw _privateConstructorUsedError;
+  String? get document => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
   int? get hoursDay => throw _privateConstructorUsedError;
   int? get hoursNight => throw _privateConstructorUsedError;
@@ -242,6 +243,7 @@ abstract class $ResultsCopyWith<$Res> {
       String? status,
       String? workplace,
       String? forWhom,
+      String? document,
       String? comment,
       int? hoursDay,
       int? hoursNight});
@@ -269,6 +271,7 @@ class _$ResultsCopyWithImpl<$Res, $Val extends Results>
     Object? status = freezed,
     Object? workplace = freezed,
     Object? forWhom = freezed,
+    Object? document = freezed,
     Object? comment = freezed,
     Object? hoursDay = freezed,
     Object? hoursNight = freezed,
@@ -310,6 +313,10 @@ class _$ResultsCopyWithImpl<$Res, $Val extends Results>
           ? _value.forWhom
           : forWhom // ignore: cast_nullable_to_non_nullable
               as String?,
+      document: freezed == document
+          ? _value.document
+          : document // ignore: cast_nullable_to_non_nullable
+              as String?,
       comment: freezed == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
@@ -343,6 +350,7 @@ abstract class _$$ResultsImplCopyWith<$Res> implements $ResultsCopyWith<$Res> {
       String? status,
       String? workplace,
       String? forWhom,
+      String? document,
       String? comment,
       int? hoursDay,
       int? hoursNight});
@@ -368,6 +376,7 @@ class __$$ResultsImplCopyWithImpl<$Res>
     Object? status = freezed,
     Object? workplace = freezed,
     Object? forWhom = freezed,
+    Object? document = freezed,
     Object? comment = freezed,
     Object? hoursDay = freezed,
     Object? hoursNight = freezed,
@@ -409,6 +418,10 @@ class __$$ResultsImplCopyWithImpl<$Res>
           ? _value.forWhom
           : forWhom // ignore: cast_nullable_to_non_nullable
               as String?,
+      document: freezed == document
+          ? _value.document
+          : document // ignore: cast_nullable_to_non_nullable
+              as String?,
       comment: freezed == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
@@ -438,6 +451,7 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
       this.status,
       this.workplace,
       this.forWhom,
+      this.document,
       this.comment,
       this.hoursDay,
       this.hoursNight});
@@ -464,6 +478,8 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
   @override
   final String? forWhom;
   @override
+  final String? document;
+  @override
   final String? comment;
   @override
   final int? hoursDay;
@@ -472,7 +488,7 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Results(post: $post, password: $password, id: $id, name: $name, shift: $shift, date: $date, status: $status, workplace: $workplace, forWhom: $forWhom, comment: $comment, hoursDay: $hoursDay, hoursNight: $hoursNight)';
+    return 'Results(post: $post, password: $password, id: $id, name: $name, shift: $shift, date: $date, status: $status, workplace: $workplace, forWhom: $forWhom, document: $document, comment: $comment, hoursDay: $hoursDay, hoursNight: $hoursNight)';
   }
 
   @override
@@ -489,6 +505,7 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('workplace', workplace))
       ..add(DiagnosticsProperty('forWhom', forWhom))
+      ..add(DiagnosticsProperty('document', document))
       ..add(DiagnosticsProperty('comment', comment))
       ..add(DiagnosticsProperty('hoursDay', hoursDay))
       ..add(DiagnosticsProperty('hoursNight', hoursNight));
@@ -510,6 +527,8 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
             (identical(other.workplace, workplace) ||
                 other.workplace == workplace) &&
             (identical(other.forWhom, forWhom) || other.forWhom == forWhom) &&
+            (identical(other.document, document) ||
+                other.document == document) &&
             (identical(other.comment, comment) || other.comment == comment) &&
             (identical(other.hoursDay, hoursDay) ||
                 other.hoursDay == hoursDay) &&
@@ -519,8 +538,21 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, post, password, id, name, shift,
-      date, status, workplace, forWhom, comment, hoursDay, hoursNight);
+  int get hashCode => Object.hash(
+      runtimeType,
+      post,
+      password,
+      id,
+      name,
+      shift,
+      date,
+      status,
+      workplace,
+      forWhom,
+      document,
+      comment,
+      hoursDay,
+      hoursNight);
 
   @JsonKey(ignore: true)
   @override
@@ -547,6 +579,7 @@ abstract class _Results implements Results {
       final String? status,
       final String? workplace,
       final String? forWhom,
+      final String? document,
       final String? comment,
       final int? hoursDay,
       final int? hoursNight}) = _$ResultsImpl;
@@ -571,6 +604,8 @@ abstract class _Results implements Results {
   String? get workplace;
   @override
   String? get forWhom;
+  @override
+  String? get document;
   @override
   String? get comment;
   @override

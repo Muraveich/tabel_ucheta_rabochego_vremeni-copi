@@ -27,6 +27,7 @@ class Results with _$Results {
       String? status,
       String? workplace,
       String? forWhom,
+      String? document,
       String? comment,
       int? hoursDay,
       int? hoursNight}) = _Results;

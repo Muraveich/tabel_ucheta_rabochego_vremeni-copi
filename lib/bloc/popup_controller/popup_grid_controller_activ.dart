@@ -10,6 +10,10 @@ class PopupGridControllerActiv {
     'ОЖ': 'Отпуск по уходу за ребенком',
     'ОТ': 'Отпуск',
     'Отг': 'Отгул',
+    'Н/Н': 'Невыход по невыясненым\nпричинам',
+    'Су': 'Сверхурочные',
+    'Я/ДО': 'Не полная рабочая смена',
+    'Я/Су': 'Явка/Сверхурочные часы',
     'РВ': 'Рабочий выходной',
     'У': 'Учебный ОТ',
     'Я': 'Явка',
@@ -66,9 +70,6 @@ class PopupGridControllerActiv {
       },
       onSelected: (PlutoGridOnSelectedEvent _event) {
         event.cell.value = _event.row!.cells['abb']!.value;
-      },
-      onSorted: (PlutoGridOnSortedEvent event) {
-        print(event);
       },
     );
   }

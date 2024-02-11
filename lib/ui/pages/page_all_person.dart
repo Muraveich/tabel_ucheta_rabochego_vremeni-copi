@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tabel_ucheta_rabochego_vremeni/ui/wigets/wiget_vybor_sotrudnika.dart';
 
 class PageAllPerson extends StatelessWidget {
   PageAllPerson({Key? key}) : super(key: key);

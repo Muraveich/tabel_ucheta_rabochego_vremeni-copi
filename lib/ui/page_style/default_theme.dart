@@ -5,9 +5,9 @@ class DefaultTheme {
   static final defaultTheme = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
     appBarTheme: AppBarTheme(
-      backgroundColor: Colors.blue.shade700,
+      backgroundColor: Colors.blue.shade400,
       systemOverlayStyle:
-          SystemUiOverlayStyle(statusBarColor: Colors.blue.shade700),
+          SystemUiOverlayStyle(statusBarColor: Colors.blue.shade400),
     ),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
@@ -19,7 +19,7 @@ class DefaultTheme {
     ),
     fontFamily: 'Exo2-Bold',
     textTheme: const TextTheme(
-        titleLarge: TextStyle(color: Colors.white),
+        titleLarge: TextStyle(color: Colors.white, fontSize: 20),
         labelSmall: TextStyle(fontSize: 12)),
   );
 }

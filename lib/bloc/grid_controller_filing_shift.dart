@@ -1,19 +1,24 @@
-import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 import 'package:tabel_ucheta_rabochego_vremeni/data/entities/person_entity.dart';
 import 'package:tabel_ucheta_rabochego_vremeni/data/repositories/person_repository.dart';
+import 'package:tabel_ucheta_rabochego_vremeni/ui/page_style/colors.dart';
 
 class GridControllerFilingShift {
-  final List<Results>? persons;
-  final int? nowShiftIndex;
+  List<Results>? persons;
+  int? nowShiftIndex;
   List<Results> nowShiftPersons = [];
-  GridControllerFilingShift({this.persons, this.nowShiftIndex});
+  bool dayNight = true;
+
+  GridControllerFilingShift({this.persons, this.nowShiftIndex}) {
+    checkDayNight();
+  }
 
   final List<PlutoColumn> columns = [
     PlutoColumn(
         width: 150,
-        backgroundColor: Colors.orange[300],
-        title: 'ФИО',
+        backgroundColor: colorColumnBacground,
+        title: 'ФИО/Должность',
         field: 'name',
         type: PlutoColumnType.text(),
         readOnly: true,
@@ -23,7 +28,7 @@ class GridControllerFilingShift {
         enableDropToResize: false),
     PlutoColumn(
         width: 100,
-        backgroundColor: Colors.orange[300],
+        backgroundColor: colorColumnBacground,
         title: 'Должность',
         field: 'post',
         type: PlutoColumnType.text(),
@@ -34,7 +39,8 @@ class GridControllerFilingShift {
         enableDropToResize: false,
         hide: true),
     PlutoColumn(
-        backgroundColor: Colors.orange[300],
+        width: 125,
+        backgroundColor: colorColumnBacground,
         title: 'Место работы',
         field: 'workplace',
         type: PlutoColumnType.select(
@@ -44,44 +50,46 @@ class GridControllerFilingShift {
             'Стела',
             'Черноморка',
             'АС№3',
-            'Черноморка (въезд)',
-            'Черноморка (выезд)',
-            'Стела (въезд)',
-            'Стела (выезд)',
+            'Черноморка\n(въезд)',
+            'Черноморка\n(выезд)',
+            'Стела\n(въезд)',
+            'Стела\n(выезд)',
           ],
         ),
         enableColumnDrag: false,
         enableContextMenu: false,
         enableDropToResize: false),
     PlutoColumn(
-        backgroundColor: Colors.orange[300],
-        title: 'Вид активности',
+        width: 110,
+        backgroundColor: colorColumnBacground,
+        title: 'Вид времени',
         field: 'status',
         type: PlutoColumnType.text(),
         enableColumnDrag: false,
         enableContextMenu: false,
         enableDropToResize: false),
     PlutoColumn(
-        width: 100,
-        backgroundColor: Colors.orange[300],
-        title: 'Часы день',
+        width: 70,
+        backgroundColor: colorColumnBacground,
+        title: DateFormat('dd.MM').format(DateTime.now()),
         field: 'hoursDay',
-        type: PlutoColumnType.number(),
+        type: PlutoColumnType.text(),
         enableColumnDrag: false,
         enableContextMenu: false,
         enableDropToResize: false),
     PlutoColumn(
-        width: 100,
-        backgroundColor: Colors.orange[300],
-        title: 'Часы ночь',
+        width: 70,
+        backgroundColor: colorColumnBacground,
+        title: '${DateTime.now().day + 1}.${DateTime.now().month}',
         field: 'hoursNight',
-        type: PlutoColumnType.number(),
+        type: PlutoColumnType.text(),
         enableColumnDrag: false,
         enableContextMenu: false,
         enableDropToResize: false,
         hide: true),
     PlutoColumn(
-        backgroundColor: Colors.orange[300],
+        width: 150,
+        backgroundColor: colorColumnBacground,
         title: 'Кого заменяет',
         field: 'replacement',
         type: PlutoColumnType.text(),
@@ -89,7 +97,24 @@ class GridControllerFilingShift {
         enableContextMenu: false,
         enableDropToResize: false),
     PlutoColumn(
-        backgroundColor: Colors.orange[300],
+        width: 100,
+        backgroundColor: colorColumnBacground,
+        title: 'Документ',
+        field: 'document',
+        type: PlutoColumnType.select(
+          <String>[
+            '',
+            'Диспетчер а/т РВ день',
+            'Диспетчер а/т РВ ночь',
+            'Регистратор РВ день',
+            'Регистратор РВ ночь',
+            'Диспетчер а/т перевод',
+            'Регистратор перевод',
+          ],
+        )),
+    PlutoColumn(
+        width: 150,
+        backgroundColor: colorColumnBacground,
         title: 'Комментарий',
         field: 'comment',
         type: PlutoColumnType.text(),
@@ -97,31 +122,32 @@ class GridControllerFilingShift {
         enableContextMenu: false,
         enableDropToResize: false),
   ];
+  final List<PlutoColumnGroup> columnGroups = [
+    PlutoColumnGroup(
+        backgroundColor: colorColumnBacground,
+        title: 'Часы',
+        fields: ['hoursDay', 'hoursNight']),
+  ];
 
   PlutoRow createRow(Results person) {
-    // Color color;
-    // switch (person.post) {
-    //   case 'Мастер':
-    //     color = Colors.black38;
-    //   case 'Регистратор':
-    //     color = const Color.fromARGB(255, 255, 213, 227);
-    //   case 'Диспетчер а/т':
-    //     color = Colors.white;
-    //     break;
-    //   default:
-    //     color = Colors.white;
-    // }
+    double day = 11;
+    double night = 0;
+    if (!dayNight) {
+      day = 3.5;
+      night = 7.5;
+    }
     Map<String, PlutoCell> cells = {
       'id': PlutoCell(value: person.id),
       'name': PlutoCell(value: '${person.name}\n${person.post}'),
       'post': PlutoCell(value: person.post),
       'workplace': PlutoCell(value: ''),
-      'status': PlutoCell(value: person.status ?? 'Явка'),
-      'hoursDay': PlutoCell(value: 11),
-      'hoursNight': PlutoCell(value: 0),
+      'status': PlutoCell(value: person.status ?? 'Я'),
+      'hoursDay': PlutoCell(value: day),
+      'hoursNight': PlutoCell(value: night),
       'replacement': PlutoCell(
         value: '',
       ),
+      'document': PlutoCell(value: ''),
       'comment': PlutoCell(value: ''),
     };
     return PlutoRow(cells: cells);
@@ -166,6 +192,7 @@ class GridControllerFilingShift {
               hoursDay: row.cells['hoursDay']!.value,
               hoursNight: row.cells['hoursNight']?.value,
               forWhom: row.cells['replacement']?.value,
+              document: row.cells['document']?.value,
               comment: row.cells['comment']?.value);
           newPersons.add(person);
         }
@@ -178,17 +205,24 @@ class GridControllerFilingShift {
     int weight = 0;
     switch (post) {
       case 'Мастер':
-        weight = -1;
+        weight = 1;
       case 'Регистратор':
         weight = 2;
       case 'Диспетчер а/т':
-        weight = 8;
+        weight = 3;
       case 'Диспетчер':
-        weight = 5;
+        weight = 4;
         break;
       default:
         weight = 4;
     }
     return weight;
+  }
+
+  void checkDayNight() {
+    var nowTime = DateTime.now();
+    if (nowTime.hour >= 20 || nowTime.hour <= 7) {
+      dayNight = false;
+    }
   }
 }
