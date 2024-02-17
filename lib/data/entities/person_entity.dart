@@ -8,8 +8,7 @@ part 'person_entity.g.dart';
 
 @freezed
 class PersonEntity with _$PersonEntity {
-  const factory PersonEntity(
-      {NowShift? now_shift, required List<Results> results}) = _PersonEntity;
+  const factory PersonEntity({required List<Results> results}) = _PersonEntity;
 
   factory PersonEntity.fromJson(Map<String, dynamic> json) =>
       _$PersonEntityFromJson(json);
@@ -23,6 +22,7 @@ class Results with _$Results {
       required int id,
       required String name,
       int? shift,
+      int? nowShift,
       DateTime? date,
       String? status,
       String? workplace,
@@ -36,12 +36,12 @@ class Results with _$Results {
       _$ResultsFromJson(json);
 }
 
-@freezed
-class NowShift with _$NowShift {
-  const factory NowShift({
-    required int now_shift,
-  }) = _NowShift;
+// @freezed
+// class NowShift with _$NowShift {
+//   const factory NowShift({
+//     required int nowShift,
+//   }) = _NowShift;
 
-  factory NowShift.fromJson(Map<String, dynamic> json) =>
-      _$NowShiftFromJson(json);
-}
+//   factory NowShift.fromJson(Map<String, dynamic> json) =>
+//       _$NowShiftFromJson(json);
+// }

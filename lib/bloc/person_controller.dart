@@ -19,8 +19,8 @@ class PersonController {
     return persons.results;
   }
 
-  Future<int> getNowShift() async {
+  Future<int?> getNowShift() async {
     var persons = await personRepo.getPersonEntiti();
-    return persons.now_shift!.now_shift;
+    return persons.results.first.nowShift;
   }
 }

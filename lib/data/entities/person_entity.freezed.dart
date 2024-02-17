@@ -20,7 +20,6 @@ PersonEntity _$PersonEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PersonEntity {
-  NowShift? get now_shift => throw _privateConstructorUsedError;
   List<Results> get results => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,9 +34,7 @@ abstract class $PersonEntityCopyWith<$Res> {
           PersonEntity value, $Res Function(PersonEntity) then) =
       _$PersonEntityCopyWithImpl<$Res, PersonEntity>;
   @useResult
-  $Res call({NowShift? now_shift, List<Results> results});
-
-  $NowShiftCopyWith<$Res>? get now_shift;
+  $Res call({List<Results> results});
 }
 
 /// @nodoc
@@ -53,31 +50,14 @@ class _$PersonEntityCopyWithImpl<$Res, $Val extends PersonEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? now_shift = freezed,
     Object? results = null,
   }) {
     return _then(_value.copyWith(
-      now_shift: freezed == now_shift
-          ? _value.now_shift
-          : now_shift // ignore: cast_nullable_to_non_nullable
-              as NowShift?,
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Results>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $NowShiftCopyWith<$Res>? get now_shift {
-    if (_value.now_shift == null) {
-      return null;
-    }
-
-    return $NowShiftCopyWith<$Res>(_value.now_shift!, (value) {
-      return _then(_value.copyWith(now_shift: value) as $Val);
-    });
   }
 }
 
@@ -89,10 +69,7 @@ abstract class _$$PersonEntityImplCopyWith<$Res>
       __$$PersonEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({NowShift? now_shift, List<Results> results});
-
-  @override
-  $NowShiftCopyWith<$Res>? get now_shift;
+  $Res call({List<Results> results});
 }
 
 /// @nodoc
@@ -106,14 +83,9 @@ class __$$PersonEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? now_shift = freezed,
     Object? results = null,
   }) {
     return _then(_$PersonEntityImpl(
-      now_shift: freezed == now_shift
-          ? _value.now_shift
-          : now_shift // ignore: cast_nullable_to_non_nullable
-              as NowShift?,
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
@@ -125,15 +97,12 @@ class __$$PersonEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PersonEntityImpl with DiagnosticableTreeMixin implements _PersonEntity {
-  const _$PersonEntityImpl(
-      {this.now_shift, required final List<Results> results})
+  const _$PersonEntityImpl({required final List<Results> results})
       : _results = results;
 
   factory _$PersonEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$PersonEntityImplFromJson(json);
 
-  @override
-  final NowShift? now_shift;
   final List<Results> _results;
   @override
   List<Results> get results {
@@ -144,7 +113,7 @@ class _$PersonEntityImpl with DiagnosticableTreeMixin implements _PersonEntity {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PersonEntity(now_shift: $now_shift, results: $results)';
+    return 'PersonEntity(results: $results)';
   }
 
   @override
@@ -152,7 +121,6 @@ class _$PersonEntityImpl with DiagnosticableTreeMixin implements _PersonEntity {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'PersonEntity'))
-      ..add(DiagnosticsProperty('now_shift', now_shift))
       ..add(DiagnosticsProperty('results', results));
   }
 
@@ -161,15 +129,13 @@ class _$PersonEntityImpl with DiagnosticableTreeMixin implements _PersonEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PersonEntityImpl &&
-            (identical(other.now_shift, now_shift) ||
-                other.now_shift == now_shift) &&
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, now_shift, const DeepCollectionEquality().hash(_results));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_results));
 
   @JsonKey(ignore: true)
   @override
@@ -186,15 +152,12 @@ class _$PersonEntityImpl with DiagnosticableTreeMixin implements _PersonEntity {
 }
 
 abstract class _PersonEntity implements PersonEntity {
-  const factory _PersonEntity(
-      {final NowShift? now_shift,
-      required final List<Results> results}) = _$PersonEntityImpl;
+  const factory _PersonEntity({required final List<Results> results}) =
+      _$PersonEntityImpl;
 
   factory _PersonEntity.fromJson(Map<String, dynamic> json) =
       _$PersonEntityImpl.fromJson;
 
-  @override
-  NowShift? get now_shift;
   @override
   List<Results> get results;
   @override
@@ -214,6 +177,7 @@ mixin _$Results {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int? get shift => throw _privateConstructorUsedError;
+  int? get nowShift => throw _privateConstructorUsedError;
   DateTime? get date => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   String? get workplace => throw _privateConstructorUsedError;
@@ -239,6 +203,7 @@ abstract class $ResultsCopyWith<$Res> {
       int id,
       String name,
       int? shift,
+      int? nowShift,
       DateTime? date,
       String? status,
       String? workplace,
@@ -267,6 +232,7 @@ class _$ResultsCopyWithImpl<$Res, $Val extends Results>
     Object? id = null,
     Object? name = null,
     Object? shift = freezed,
+    Object? nowShift = freezed,
     Object? date = freezed,
     Object? status = freezed,
     Object? workplace = freezed,
@@ -296,6 +262,10 @@ class _$ResultsCopyWithImpl<$Res, $Val extends Results>
       shift: freezed == shift
           ? _value.shift
           : shift // ignore: cast_nullable_to_non_nullable
+              as int?,
+      nowShift: freezed == nowShift
+          ? _value.nowShift
+          : nowShift // ignore: cast_nullable_to_non_nullable
               as int?,
       date: freezed == date
           ? _value.date
@@ -346,6 +316,7 @@ abstract class _$$ResultsImplCopyWith<$Res> implements $ResultsCopyWith<$Res> {
       int id,
       String name,
       int? shift,
+      int? nowShift,
       DateTime? date,
       String? status,
       String? workplace,
@@ -372,6 +343,7 @@ class __$$ResultsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? shift = freezed,
+    Object? nowShift = freezed,
     Object? date = freezed,
     Object? status = freezed,
     Object? workplace = freezed,
@@ -401,6 +373,10 @@ class __$$ResultsImplCopyWithImpl<$Res>
       shift: freezed == shift
           ? _value.shift
           : shift // ignore: cast_nullable_to_non_nullable
+              as int?,
+      nowShift: freezed == nowShift
+          ? _value.nowShift
+          : nowShift // ignore: cast_nullable_to_non_nullable
               as int?,
       date: freezed == date
           ? _value.date
@@ -447,6 +423,7 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
       required this.id,
       required this.name,
       this.shift,
+      this.nowShift,
       this.date,
       this.status,
       this.workplace,
@@ -470,6 +447,8 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
   @override
   final int? shift;
   @override
+  final int? nowShift;
+  @override
   final DateTime? date;
   @override
   final String? status;
@@ -488,7 +467,7 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Results(post: $post, password: $password, id: $id, name: $name, shift: $shift, date: $date, status: $status, workplace: $workplace, forWhom: $forWhom, document: $document, comment: $comment, hoursDay: $hoursDay, hoursNight: $hoursNight)';
+    return 'Results(post: $post, password: $password, id: $id, name: $name, shift: $shift, nowShift: $nowShift, date: $date, status: $status, workplace: $workplace, forWhom: $forWhom, document: $document, comment: $comment, hoursDay: $hoursDay, hoursNight: $hoursNight)';
   }
 
   @override
@@ -501,6 +480,7 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('shift', shift))
+      ..add(DiagnosticsProperty('nowShift', nowShift))
       ..add(DiagnosticsProperty('date', date))
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('workplace', workplace))
@@ -522,6 +502,8 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.shift, shift) || other.shift == shift) &&
+            (identical(other.nowShift, nowShift) ||
+                other.nowShift == nowShift) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.workplace, workplace) ||
@@ -545,6 +527,7 @@ class _$ResultsImpl with DiagnosticableTreeMixin implements _Results {
       id,
       name,
       shift,
+      nowShift,
       date,
       status,
       workplace,
@@ -575,6 +558,7 @@ abstract class _Results implements Results {
       required final int id,
       required final String name,
       final int? shift,
+      final int? nowShift,
       final DateTime? date,
       final String? status,
       final String? workplace,
@@ -597,6 +581,8 @@ abstract class _Results implements Results {
   @override
   int? get shift;
   @override
+  int? get nowShift;
+  @override
   DateTime? get date;
   @override
   String? get status;
@@ -615,149 +601,5 @@ abstract class _Results implements Results {
   @override
   @JsonKey(ignore: true)
   _$$ResultsImplCopyWith<_$ResultsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-NowShift _$NowShiftFromJson(Map<String, dynamic> json) {
-  return _NowShift.fromJson(json);
-}
-
-/// @nodoc
-mixin _$NowShift {
-  int get now_shift => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $NowShiftCopyWith<NowShift> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $NowShiftCopyWith<$Res> {
-  factory $NowShiftCopyWith(NowShift value, $Res Function(NowShift) then) =
-      _$NowShiftCopyWithImpl<$Res, NowShift>;
-  @useResult
-  $Res call({int now_shift});
-}
-
-/// @nodoc
-class _$NowShiftCopyWithImpl<$Res, $Val extends NowShift>
-    implements $NowShiftCopyWith<$Res> {
-  _$NowShiftCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? now_shift = null,
-  }) {
-    return _then(_value.copyWith(
-      now_shift: null == now_shift
-          ? _value.now_shift
-          : now_shift // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$NowShiftImplCopyWith<$Res>
-    implements $NowShiftCopyWith<$Res> {
-  factory _$$NowShiftImplCopyWith(
-          _$NowShiftImpl value, $Res Function(_$NowShiftImpl) then) =
-      __$$NowShiftImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int now_shift});
-}
-
-/// @nodoc
-class __$$NowShiftImplCopyWithImpl<$Res>
-    extends _$NowShiftCopyWithImpl<$Res, _$NowShiftImpl>
-    implements _$$NowShiftImplCopyWith<$Res> {
-  __$$NowShiftImplCopyWithImpl(
-      _$NowShiftImpl _value, $Res Function(_$NowShiftImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? now_shift = null,
-  }) {
-    return _then(_$NowShiftImpl(
-      now_shift: null == now_shift
-          ? _value.now_shift
-          : now_shift // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$NowShiftImpl with DiagnosticableTreeMixin implements _NowShift {
-  const _$NowShiftImpl({required this.now_shift});
-
-  factory _$NowShiftImpl.fromJson(Map<String, dynamic> json) =>
-      _$$NowShiftImplFromJson(json);
-
-  @override
-  final int now_shift;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'NowShift(now_shift: $now_shift)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'NowShift'))
-      ..add(DiagnosticsProperty('now_shift', now_shift));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$NowShiftImpl &&
-            (identical(other.now_shift, now_shift) ||
-                other.now_shift == now_shift));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, now_shift);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$NowShiftImplCopyWith<_$NowShiftImpl> get copyWith =>
-      __$$NowShiftImplCopyWithImpl<_$NowShiftImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$NowShiftImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _NowShift implements NowShift {
-  const factory _NowShift({required final int now_shift}) = _$NowShiftImpl;
-
-  factory _NowShift.fromJson(Map<String, dynamic> json) =
-      _$NowShiftImpl.fromJson;
-
-  @override
-  int get now_shift;
-  @override
-  @JsonKey(ignore: true)
-  _$$NowShiftImplCopyWith<_$NowShiftImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

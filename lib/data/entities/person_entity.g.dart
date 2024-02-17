@@ -8,9 +8,6 @@ part of 'person_entity.dart';
 
 _$PersonEntityImpl _$$PersonEntityImplFromJson(Map<String, dynamic> json) =>
     _$PersonEntityImpl(
-      now_shift: json['now_shift'] == null
-          ? null
-          : NowShift.fromJson(json['now_shift'] as Map<String, dynamic>),
       results: (json['results'] as List<dynamic>)
           .map((e) => Results.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -18,7 +15,6 @@ _$PersonEntityImpl _$$PersonEntityImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$PersonEntityImplToJson(_$PersonEntityImpl instance) =>
     <String, dynamic>{
-      'now_shift': instance.now_shift,
       'results': instance.results,
     };
 
@@ -29,6 +25,7 @@ _$ResultsImpl _$$ResultsImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       name: json['name'] as String,
       shift: json['shift'] as int?,
+      nowShift: json['nowShift'] as int?,
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       status: json['status'] as String?,
@@ -47,6 +44,7 @@ Map<String, dynamic> _$$ResultsImplToJson(_$ResultsImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'shift': instance.shift,
+      'nowShift': instance.nowShift,
       'date': instance.date?.toIso8601String(),
       'status': instance.status,
       'workplace': instance.workplace,
@@ -55,14 +53,4 @@ Map<String, dynamic> _$$ResultsImplToJson(_$ResultsImpl instance) =>
       'comment': instance.comment,
       'hoursDay': instance.hoursDay,
       'hoursNight': instance.hoursNight,
-    };
-
-_$NowShiftImpl _$$NowShiftImplFromJson(Map<String, dynamic> json) =>
-    _$NowShiftImpl(
-      now_shift: json['now_shift'] as int,
-    );
-
-Map<String, dynamic> _$$NowShiftImplToJson(_$NowShiftImpl instance) =>
-    <String, dynamic>{
-      'now_shift': instance.now_shift,
     };
